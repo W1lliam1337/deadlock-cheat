@@ -1,9 +1,8 @@
 # Deadlock Cheat Base
 
-Welcome to Deadlock Cheat Base, an advanced, modular cheat development framework for games on the Source 2 engine. Built with modern C++20 standards, Deadlock Cheat Base offers a highly optimized, extensible, and well-organized structure, designed for developers looking to create secure and efficient cheats with minimal runtime overhead.
+Welcome to Deadlock Cheat Base, an advanced, modular cheat development framework for games on the Source 2 engine. Deadlock Cheat Base offers a highly optimized, extensible, and well-organized structure, designed for developers looking to create secure and efficient cheats with minimal runtime overhead.
 
 # Key Features
-- Modern C++ Implementation: Utilizing C++20 features, this project ensures high efficiency, readability, and memory safety.
 - Doxygen Documentation: In-depth, clean, and organized documentation across all modules using Doxygen comments. This facilitates an easy understanding of the codebase for contributors.
 - Hook Management System: A powerful hook manager that leverages compile-time validation and tokenized hook identifiers. Hooks can be easily created, managed, and removed with minimal code, providing an organized way to inject functionality into the game.
 - Interactive ImGui Menu: Features a customizable and modern UI built with ImGui, allowing real-time configuration and control over cheat options.
