@@ -52,8 +52,8 @@ namespace hack::systems::inline memory {
 
         _ASSERT( base_address != nullptr );
 
-        static constexpr auto dos_header_signature { ( 0x5A4D ) };
-        static constexpr auto nt_headers_signature { ( 0x4550 ) };
+        static constexpr auto dos_header_signature { 0x5A4D };
+        static constexpr auto nt_headers_signature { 0x4550 };
 
         const auto dos_header { base_address.as< const utils::image_dos_header * >( ) };
 
@@ -68,10 +68,10 @@ namespace hack::systems::inline memory {
     _INLINE std::vector< std::optional< std::byte > > ldr_module_t::pattern_to_bytes( const std::string_view pattern ) noexcept {
         std::vector< std::optional< std::byte > > bytes = { };
 
-        const char *start = pattern.data( );
-        const char *end   = start + pattern.size( );
+        const auto start { pattern.data( ) };
+        const auto end { start + pattern.size( ) };
 
-        for ( const char *current = start; current < end; ++current ) {
+        for ( auto current { start }; current < end; ++current ) {
             if ( *current == '?' ) {
                 ++current;
                 if ( *current == '?' )
@@ -166,9 +166,9 @@ namespace hack::systems::inline memory {
     _INLINE constexpr utils::base_address_t ldr_module_t::get_optional_header( const utils::base_address_t &base_address ) noexcept {
         _ASSERT( base_address != nullptr );
 
-        static constexpr auto dos_header_signature { ( 0x5A4D ) };
-        static constexpr auto nt_headers_signature { ( 0x4550 ) };
-        static constexpr auto optional_header_magic { ( 0x20B ) };
+        static constexpr auto dos_header_signature { 0x5A4D };
+        static constexpr auto nt_headers_signature { 0x4550 };
+        static constexpr auto optional_header_magic { 0x20B };
 
         const auto *const dos_header { base_address.as< const utils::image_dos_header * >( ) };
 

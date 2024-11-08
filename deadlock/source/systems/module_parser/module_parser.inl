@@ -24,9 +24,6 @@ namespace hack::systems::inline memory {
         return current_teb;
     }
 
-    /// Default parser (g_module_parser) for functions
-    inline constexpr auto &default_parser { systems::g_module_parser };
-
     /**
      * @brief Retrieves the pattern address from the specified module.
      *
@@ -42,7 +39,7 @@ namespace hack::systems::inline memory {
     template < typename T = utils::base_address_t >
     constexpr std::add_const_t< T > get_pattern( const std::string_view module_name, const std::string_view pattern,
                                                  const std::uint8_t offset = 0, const bool dereference = false ) noexcept {
-        const auto module { default_parser->get_module( _HASH( module_name ) ) };
+        const auto module { g_module_parser->get_module( _HASH( module_name ) ) };
         auto       pattern_addr { module->find_pattern( pattern ) };
 
         if ( offset != 0 )
@@ -63,7 +60,7 @@ namespace hack::systems::inline memory {
      */
     template < typename T >
     constexpr std::add_const_t< T > get_export( const std::string_view module_name, const std::string_view export_name ) noexcept {
-        return default_parser->get_module( _HASH( module_name ) )
+        return g_module_parser->get_module( _HASH( module_name ) )
             ->get_export_address( export_name )
             .template as< std::add_const_t< T > >( );
     }
@@ -77,7 +74,7 @@ namespace hack::systems::inline memory {
      */
     template < typename T >
     constexpr std::add_const_t< T > get_interface( const std::string_view module_name, const std::string_view interface_name ) noexcept {
-        return default_parser->get_module( _HASH( module_name ) )
+        return g_module_parser->get_module( _HASH( module_name ) )
             ->find_interface( interface_name )
             .template as< std::add_const_t< T > >( );
     }
