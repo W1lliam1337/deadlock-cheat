@@ -1,0 +1,2 @@
+#define _OFFSET(add_offset, var, treturn, __VA_ARGS__) [[nodiscard]] _INLINE std::add_lvalue_reference_t< treturn __VA_OPT__(, ) __VA_ARGS__ > var( ) const noexcept { return *utils::base_address_t { this }.offset( add_offset ).as< std::add_pointer_t< treturn __VA_OPT__(, ) __VA_ARGS__ > >( ); }
+#define _HOOK(hooker, func) using fn_##func = decltype( &func ); fn_##func m_orig_##func = hack::systems::hook_impl< fn_##func >( _HASH( #hooker ), hooker, reinterpret_cast< void * >( func ) );

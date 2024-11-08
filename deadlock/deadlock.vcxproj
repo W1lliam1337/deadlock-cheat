@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="dbg|x64">
+      <Configuration>dbg</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="rel|x64">
+      <Configuration>rel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{2459ed8d-1ec2-4e70-8f8c-87b18af0d702}</ProjectGuid>
+    <RootNamespace>enigmav2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <ProjectName>deadlock</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dbg|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='rel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\marmasm.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='rel|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">
+    <IncludePath>$(ProjectDir)source\pch\;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)source;$(ProjectDir)third_party;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)dll\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)logs\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(ProjectDir)deps\freetype\lib\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='rel|x64'">
+    <IncludePath>$(ProjectDir)source\pch\;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(ProjectDir)source;$(ProjectDir)third_party;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)dll\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)logs\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NOMINMAX;_DEBUG;_CONSOLE;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <CallingConvention>FastCall</CallingConvention>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='rel|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NOMINMAX;_RELEASE;_CONSOLE;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;IMGUI_DISABLE_WIN32_FUNCTIONS;IMGUI_DISABLE_DEMO_WINDOWS;IMGUI_DISABLE_WIN32_DEFAULT_CLIPBOARD_FUNCTIONS;IMGUI_USE_STB_SPRINTF;IMGUI_DISABLE_WIN32_DEFAULT_IME_FUNCTIONS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <CallingConvention>FastCall</CallingConvention>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <OmitFramePointers>true</OmitFramePointers>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <ExceptionHandling>false</ExceptionHandling>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\systems\input\input.cpp" />
+    <ClCompile Include="source\systems\render\render.cpp" />
+    <ClCompile Include="source\core\hooks\detours\client.cpp" />
+    <ClCompile Include="source\core\hooks\detours\game_overlay_renderer.cpp" />
+    <ClCompile Include="source\valve\entity_utils\entity_utils.cpp" />
+    <ClCompile Include="source\pch\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\systems\module_parser\module_parser.cpp" />
+    <ClCompile Include="source\valve\structs\entities\base_entity.cpp" />
+    <ClCompile Include="source\valve\structs\entities\base_player.cpp" />
+    <ClCompile Include="third_party\imgui\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\imgui\imgui_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\imgui\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\imgui\imgui_impl_dx11.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\imgui\imgui_impl_win32.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\imgui\imgui_tables.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\imgui\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\minhk\buffer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\minhk\hde\hde32.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\minhk\hde\hde64.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\minhk\hook.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="third_party\minhk\trampoline.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='rel|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\bootstrap.cpp" />
+    <ClCompile Include="source\core\ui\ui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\systems\input\input.hpp" />
+    <ClInclude Include="source\systems\render\render.hpp" />
+    <ClInclude Include="source\core\hooks\hooks.hpp" />
+    <ClInclude Include="source\utils\math\data_types\vector.hpp" />
+    <ClInclude Include="source\utils\memory\memory.hpp" />
+    <ClInclude Include="source\valve\entity_utils\entity_utils.hpp" />
+    <ClInclude Include="source\systems\hooker\hooker.hpp" />
+    <ClInclude Include="source\systems\logger\logger.hpp" />
+    <ClInclude Include="source\pch\pch.hpp" />
+    <ClInclude Include="source\systems\module_parser\ldr_module\ldr_module.hpp" />
+    <ClInclude Include="source\systems\module_parser\module_parser.hpp" />
+    <ClInclude Include="source\utils\hash\hash.hpp" />
+    <ClInclude Include="source\utils\memory\base_address\base_address.hpp" />
+    <ClInclude Include="source\utils\memory\win_types\win_types.hpp" />
+    <ClInclude Include="source\valve\interfaces\citadel_input\citadel_input.hpp" />
+    <ClInclude Include="source\valve\interfaces\entity_system\entity_system.hpp" />
+    <ClInclude Include="source\valve\interfaces\mem_alloc\mem_alloc.hpp" />
+    <ClInclude Include="source\valve\interfaces\schema_system\schema_system.hpp" />
+    <ClInclude Include="source\valve\net_vars\net_vars.hpp" />
+    <ClInclude Include="source\valve\structs\data_types\handle\handle.hpp" />
+    <ClInclude Include="source\valve\structs\data_types\utl\utl_hash.hpp" />
+    <ClInclude Include="source\valve\structs\data_types\utl\utl_memory.hpp" />
+    <ClInclude Include="source\valve\structs\data_types\utl\utl_memory_pool.hpp" />
+    <ClInclude Include="source\valve\structs\data_types\utl\utl_vector.hpp" />
+    <ClInclude Include="source\valve\structs\entities\base_entity.hpp" />
+    <ClInclude Include="source\valve\structs\entities\base_player.hpp" />
+    <ClInclude Include="source\valve\structs\entities\handle_entity.hpp" />
+    <ClInclude Include="third_party\json\json.hpp" />
+    <ClInclude Include="third_party\imgui\imconfig.h" />
+    <ClInclude Include="third_party\imgui\imgui.h" />
+    <ClInclude Include="third_party\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="third_party\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="third_party\imgui\imgui_internal.h" />
+    <ClInclude Include="third_party\imgui\imstb_rectpack.h" />
+    <ClInclude Include="third_party\imgui\imstb_textedit.h" />
+    <ClInclude Include="third_party\imgui\imstb_truetype.h" />
+    <ClInclude Include="third_party\imgui\stb_printf.h" />
+    <ClInclude Include="third_party\minhk\buffer.hpp" />
+    <ClInclude Include="third_party\minhk\hde\hde32.hpp" />
+    <ClInclude Include="third_party\minhk\hde\hde64.hpp" />
+    <ClInclude Include="third_party\minhk\hde\pstdint.hpp" />
+    <ClInclude Include="third_party\minhk\hde\table32.hpp" />
+    <ClInclude Include="third_party\minhk\hde\table64.hpp" />
+    <ClInclude Include="third_party\minhk\minhook.hpp" />
+    <ClInclude Include="third_party\minhk\trampoline.hpp" />
+    <ClInclude Include="src\cs2\structs\data_types\utl_hash.hpp" />
+    <ClInclude Include="src\cs2\structs\data_types\utl_memory.hpp" />
+    <ClInclude Include="src\cs2\structs\data_types\utl_memory_pool.hpp" />
+    <ClInclude Include="source\vendor.hpp" />
+    <ClInclude Include="src\utils\math\data_types\transform.hpp" />
+    <ClInclude Include="source\core\ui\ui.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+    <None Include="source\core\ui\ui.inl" />
+    <None Include="source\systems\hooker\hooker.inl" />
+    <None Include="source\systems\input\input.inl" />
+    <None Include="source\systems\logger\logger.inl" />
+    <None Include="source\systems\module_parser\ldr_module\ldr_module.inl" />
+    <None Include="source\systems\module_parser\module_parser.inl" />
+    <None Include="source\systems\render\render.inl" />
+    <None Include="source\utils\memory\base_address\base_address.inl" />
+    <None Include="source\valve\entity_utils\entity_utils.inl" />
+    <None Include="source\valve\interfaces\citadel_input\citadel_input.inl" />
+    <None Include="source\valve\interfaces\entity_system\entity_system.inl" />
+    <None Include="source\valve\interfaces\schema_system\schema_system.inl" />
+    <None Include="source\valve\net_vars\net_vars.inl" />
+    <None Include="source\valve\structs\data_types\handle\handle.inl" />
+    <None Include="source\valve\structs\data_types\utl\utl_hash.inl" />
+    <None Include="source\valve\structs\data_types\utl\utl_memory.inl" />
+    <None Include="source\valve\structs\entities\base_entity.inl" />
+    <None Include="source\valve\structs\entities\base_player.inl" />
+    <None Include="source\valve\structs\entities\handle_entity.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\marmasm.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>
